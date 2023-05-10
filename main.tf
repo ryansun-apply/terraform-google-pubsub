@@ -331,9 +331,9 @@ resource "google_pubsub_subscription" "bigquery_subscriptions" {
   }
 
   depends_on = [
-    google_pubsub_topic.topic,
-    google_project_iam_member.bigquery_metadata_viewer_binding,
-    google_project_iam_member.bigquery_data_editor_binding
+    google_pubsub_topic.topic
+    # google_project_iam_member.bigquery_metadata_viewer_binding,
+    # google_project_iam_member.bigquery_data_editor_binding
   ]
 }
 
