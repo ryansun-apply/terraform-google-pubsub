@@ -31,19 +31,19 @@ resource "google_pubsub_schema" "schema" {
   definition = var.schema.definition
 }
 
-resource "google_project_iam_member" "bigquery_metadata_viewer_binding" {
-  count   = length(var.bigquery_subscriptions) != 0 ? 1 : 0
-  project = var.project_id
-  role    = "roles/bigquery.metadataViewer"
-  member  = "serviceAccount:${local.pubsub_svc_account_email}"
-}
+# resource "google_project_iam_member" "bigquery_metadata_viewer_binding" {
+#   count   = length(var.bigquery_subscriptions) != 0 ? 1 : 0
+#   project = var.project_id
+#   role    = "roles/bigquery.metadataViewer"
+#   member  = "serviceAccount:${local.pubsub_svc_account_email}"
+# }
 
-resource "google_project_iam_member" "bigquery_data_editor_binding" {
-  count   = length(var.bigquery_subscriptions) != 0 ? 1 : 0
-  project = var.project_id
-  role    = "roles/bigquery.dataEditor"
-  member  = "serviceAccount:${local.pubsub_svc_account_email}"
-}
+# resource "google_project_iam_member" "bigquery_data_editor_binding" {
+#   count   = length(var.bigquery_subscriptions) != 0 ? 1 : 0
+#   project = var.project_id
+#   role    = "roles/bigquery.dataEditor"
+#   member  = "serviceAccount:${local.pubsub_svc_account_email}"
+# }
 
 resource "google_project_iam_member" "token_creator_binding" {
   count   = var.grant_token_creator ? 1 : 0
